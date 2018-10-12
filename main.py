@@ -3,7 +3,8 @@ import numpy as np
 import os
 
 
-video_path = "video/test.MOV"
+video_file = "test.mp4"
+video_path = "video/{}".format(video_file)
 
 def video_to_image(video_path):
     cap = cv2.VideoCapture(video_path)
@@ -13,12 +14,12 @@ def video_to_image(video_path):
         if not ret:
             break
 
-        # 60프레임당 이미지 1장
-        frame = 60
+        # ()프레임당 이미지 1장
+        frame = (150)
         if (int(cap.get(1)) % frame == 0):
             video_name = video_path.split('/')[-1][:-4]
-            image_name = "{}_{}.png".format(video_name, "{0:04d}".format(count))
-            image_path = "images/"
+            image_name = "{}_{}.jpg".format(video_name, "{0:04d}".format(count))
+            image_path = "{}/".format(video_file[:-4])
             if not os.path.isdir(image_path):
                 os.mkdir(image_path)
                 print("Create directory({})".format(image_path))
